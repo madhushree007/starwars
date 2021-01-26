@@ -12,7 +12,9 @@ describe('reducer', () => {
       {
         loading: true,
         isFlipped: false,
-        playGame: true
+        playGame: true,
+        computerScore: 0,
+        playerScore: 0
       }
     )
   })
@@ -39,7 +41,9 @@ describe('reducer', () => {
           mass: 333,
           gender: 'Female'
 
-        }
+        },
+        computerScore: 0,
+        playerScore: 0
       }
     )
   })

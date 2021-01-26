@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="text-center card"
+  >
+    <div
+      className="card-body"
+    >
+      <div>
+        <h1>
+          Welcome 
+          <br />
+          <span>
+            to
+          </span>
+          <br />
+          Card Game
+        </h1>
+      </div>
+      <form
+        className="formDiv"
+        onSubmit={[Function]}
+      >
+        <label
+          htmlFor="firstName"
+        >
+          Please Enter Your Name
+        </label>
+        <input
+          name="firstName"
+          onChange={[Function]}
+          value=""
+        />
+        <button
+          type="submit"
+        >
+          ENTER
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
