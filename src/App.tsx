@@ -1,10 +1,15 @@
 import React from 'react';
-import './App.css';
+import { useSelector } from 'react-redux';
+import './App.scss';
+import Game from './components/Game/Game';
+import Login from './components/Login/Login';
+import { RootStore } from './Store';
 
-function App() {
+const App: React.FC = () => {
+  const user = useSelector((store: RootStore) => store.username);
   return (
-    <div className="App">
-      test
+    <div className='container'>
+      { user ? <Game /> : <Login /> }
     </div>
   );
 }
