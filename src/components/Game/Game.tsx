@@ -27,6 +27,7 @@ const Game: React.FC = () => {
   
   const dispatch = useDispatch();
 
+  // handles the play game, set card flip, fetch data and set game state
   const playGame = () => {
     dispatch(set_card_flip(true));
     console.log(playOption);
@@ -36,40 +37,40 @@ const Game: React.FC = () => {
 
   return (
     <>
-    <div className='welcome'>
-        <h2>Welcome {username}!</h2>
-        <h6 onClick={() => dispatch(user_logout())}>Logout</h6>
-    </div>
-    <div className='gameRules'>
-      <h4>Let's play card game with computer.</h4>
-      <p>To play the game click on PLAY button and it will randomly fetch the data from The Star Wars API. Whichever's card gets more mass value will get one point. In case of equal mass no one gets points</p>
-    </div>
-    <Nav />
-    
-    <Row>
-      <Col><h5>{username}'s Score <Badge variant="primary">{playerScore}</Badge></h5></Col>
-      <Col><h5>Computer's Score <Badge variant="primary">{computerScore}</Badge></h5></Col>
-    </Row>
-    <div className='cardContainer'>
+      <div className='welcome'>
+          <h2>Welcome {username}!</h2>
+          <h6 onClick={() => dispatch(user_logout())}>Logout</h6>
+      </div>
+      <div className='gameRules'>
+        <h4>Let's play card game with computer.</h4>
+        <p>To play the game click on PLAY button and it will randomly fetch the data from The Star Wars API. Whichever's card gets more mass value will get one point. In case of equal mass no one gets points</p>
+      </div>
+      <Nav />
       
       <Row>
-        <Col>
-          { playOption === 'people' && <InfoCardPeople info={playerCardPeople} isCardFlipped={isCardFlipped} /> }
-          { playOption === 'planets' && <InfoCardPlanets info={playerCardPlanets} isCardFlipped={isCardFlipped} /> }
-          { playOption === 'starships' && <InfoCardStarships info={playerCardStarShip} isCardFlipped={isCardFlipped} /> }
-        </Col>
-        <Col>
-          { playOption === 'people' && <InfoCardPeople info={computerCardPeople} isCardFlipped={isCardFlipped} /> }
-          { playOption === 'planets' && <InfoCardPlanets info={computerCardPlanets} isCardFlipped={isCardFlipped} /> }
-          { playOption === 'starships' && <InfoCardStarships info={computerCardStarShip} isCardFlipped={isCardFlipped} /> }
-        </Col>
+        <Col><h5>{username}'s Score <Badge variant="primary">{playerScore}</Badge></h5></Col>
+        <Col><h5>Computer's Score <Badge variant="primary">{computerScore}</Badge></h5></Col>
       </Row>
-      <Row className='playButton'>
-        {playGameState === true && <Button variant="warning" style={{width: '10rem'}} onClick={playGame}>Play</Button>}
-      </Row>
-      
-    </div>
-    {playGameState === false && <PlayMore /> }
+      <div className='cardContainer'>
+        
+        <Row>
+          <Col>
+            { playOption === 'people' && <InfoCardPeople info={playerCardPeople} isCardFlipped={isCardFlipped} /> }
+            { playOption === 'planets' && <InfoCardPlanets info={playerCardPlanets} isCardFlipped={isCardFlipped} /> }
+            { playOption === 'starships' && <InfoCardStarships info={playerCardStarShip} isCardFlipped={isCardFlipped} /> }
+          </Col>
+          <Col>
+            { playOption === 'people' && <InfoCardPeople info={computerCardPeople} isCardFlipped={isCardFlipped} /> }
+            { playOption === 'planets' && <InfoCardPlanets info={computerCardPlanets} isCardFlipped={isCardFlipped} /> }
+            { playOption === 'starships' && <InfoCardStarships info={computerCardStarShip} isCardFlipped={isCardFlipped} /> }
+          </Col>
+        </Row>
+        <Row className='playButton'>
+          {playGameState === true && <Button variant="warning" style={{width: '10rem'}} onClick={playGame}>Play</Button>}
+        </Row>
+        
+      </div>
+      {playGameState === false && <PlayMore /> }
   </>
   )
 };

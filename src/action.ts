@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { PeopleI, PlanetsI, SET_COMPUTER_CARD_PEOPLE, SET_COMPUTER_CARD_PLANETS, SET_COMPUTER_CARD_STARSHIPS, SET_COMPUTER_SCORE, SET_FLIPPED, SET_GAME_STATE, SET_LOADING, SET_PLAYER_CARD_PEOPLE, SET_PLAYER_CARD_PLANETS, SET_PLAYER_CARD_STARSHIPS, SET_PLAYER_SCORE, SET_PLAY_OPTION, StarShipI, StarWarsDispatchTypes, USER_LOGIN, USER_LOGOUT } from './types/actionTypes';
 const BASE_URL = 'https://swapi.dev/api/';
 
+// set loading state
 export function set_loading(loading: boolean): StarWarsDispatchTypes {
   return {
     type: SET_LOADING,
@@ -10,6 +11,7 @@ export function set_loading(loading: boolean): StarWarsDispatchTypes {
   }
 }
 
+// set Player's people card
 export function set_player_card_people(playerCardPeople: PeopleI): StarWarsDispatchTypes {
   return {
     type: SET_PLAYER_CARD_PEOPLE,
@@ -17,6 +19,7 @@ export function set_player_card_people(playerCardPeople: PeopleI): StarWarsDispa
   }
 }
 
+// set Computer's people card
 export function set_player_card_starships(playerCardStarShip: StarShipI): StarWarsDispatchTypes {
   return {
     type: SET_PLAYER_CARD_STARSHIPS,
@@ -24,6 +27,7 @@ export function set_player_card_starships(playerCardStarShip: StarShipI): StarWa
   }
 }
 
+// set Player's planets card
 export function set_player_card_planets(playerCardPlanets: PlanetsI): StarWarsDispatchTypes {
   return {
     type: SET_PLAYER_CARD_PLANETS,
@@ -31,6 +35,7 @@ export function set_player_card_planets(playerCardPlanets: PlanetsI): StarWarsDi
   }
 }
 
+// set Computer's people card
 export function set_computer_card_people(computerCardPeople: PeopleI): StarWarsDispatchTypes {
   return {
     type: SET_COMPUTER_CARD_PEOPLE,
@@ -38,6 +43,7 @@ export function set_computer_card_people(computerCardPeople: PeopleI): StarWarsD
   }
 }
 
+// set Computer's starships card
 export function set_computer_card_starships(computerCardStarShip: StarShipI): StarWarsDispatchTypes {
   return {
     type: SET_COMPUTER_CARD_STARSHIPS,
@@ -45,6 +51,7 @@ export function set_computer_card_starships(computerCardStarShip: StarShipI): St
   }
 }
 
+// set Computer's planets card
 export function set_computer_card_planets(computerCardPlanets: PlanetsI): StarWarsDispatchTypes {
   return {
     type: SET_COMPUTER_CARD_PLANETS,
@@ -52,6 +59,7 @@ export function set_computer_card_planets(computerCardPlanets: PlanetsI): StarWa
   }
 }
 
+// set card flip state
 export function set_card_flip(isFlipped: boolean): StarWarsDispatchTypes {
   return {
     type: SET_FLIPPED,
@@ -59,6 +67,7 @@ export function set_card_flip(isFlipped: boolean): StarWarsDispatchTypes {
   }
 }
 
+// set game state
 export function set_game_state(playGame: boolean): StarWarsDispatchTypes {
   return {
     type: SET_GAME_STATE,
@@ -66,18 +75,21 @@ export function set_game_state(playGame: boolean): StarWarsDispatchTypes {
   }
 }
 
+// set player's score
 export function set_player_score(): StarWarsDispatchTypes {
   return {
     type: SET_PLAYER_SCORE
   }
 }
 
+// set Computer's score
 export function set_computer_score(): StarWarsDispatchTypes {
   return {
     type: SET_COMPUTER_SCORE
   }
 }
 
+// set username
 export function user_login(username: string): StarWarsDispatchTypes {
   return {
     type: USER_LOGIN,
@@ -85,12 +97,14 @@ export function user_login(username: string): StarWarsDispatchTypes {
   }
 }
 
+// logout user
 export function user_logout(): StarWarsDispatchTypes {
   return {
     type: USER_LOGOUT
   }
 }
 
+// set playing option
 export function play_option(playOption: string): StarWarsDispatchTypes {
   return {
     type: SET_PLAY_OPTION,
@@ -99,7 +113,7 @@ export function play_option(playOption: string): StarWarsDispatchTypes {
 }
 
 
-
+// Fetch data from server
 export function fetchSWInfo(playWith: string) {
   return async (dispatch: Dispatch<StarWarsDispatchTypes>) => {
     dispatch(set_loading(true));

@@ -44,7 +44,30 @@ describe('actions', () => {
       loading
     }
     expect(actions.set_loading(loading)).toEqual(expectedAction)
-  })
+  });
+
+  it('should set the user name', () => {
+    const expectedAction = {
+      type: types.USER_LOGIN,
+      username: 'Madhu'
+    }
+    expect(actions.user_login('Madhu')).toEqual(expectedAction)
+  });
+
+  const data1 = {
+    name: 'Madhu',
+    height: 174,
+    mass: 333,
+    gender: 'Female'
+  }
+  it('should set the player card details', () => {
+    const expectedAction = {
+      type: types.SET_PLAYER_CARD_PEOPLE,
+      playerCardPeople: data1
+    }
+    expect(actions.set_player_card_people(data1)).toEqual(expectedAction)
+  });
+
 });
 
 
