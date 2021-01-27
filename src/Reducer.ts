@@ -1,14 +1,19 @@
-import { SET_COMPUTER_CARD, SET_COMPUTER_SCORE, SET_FLIPPED, SET_GAME_STATE, SET_LOADING, SET_PLAYER_CARD, SET_PLAYER_SCORE, StarShipI, StarWarsDispatchTypes, USER_LOGIN, USER_LOGOUT } from './types/actionTypes';
+import { PeopleI, PlanetsI, SET_COMPUTER_CARD_PEOPLE, SET_COMPUTER_CARD_PLANETS, SET_COMPUTER_CARD_STARSHIPS, SET_COMPUTER_SCORE, SET_FLIPPED, SET_GAME_STATE, SET_LOADING, SET_PLAYER_CARD_PEOPLE, SET_PLAYER_CARD_PLANETS, SET_PLAYER_CARD_STARSHIPS, SET_PLAYER_SCORE, SET_PLAY_OPTION, StarShipI, StarWarsDispatchTypes, USER_LOGIN, USER_LOGOUT } from './types/actionTypes';
 
 export interface DefaultStateI {
   loading: boolean,
   username?: string,
-  playerCard?: StarShipI,
-  computerCard?: StarShipI,
+  playerCardPeople?: PeopleI,
+  computerCardPeople?: PeopleI,
+  playerCardStarShip?: StarShipI,
+  computerCardStarShip?: StarShipI,
+  playerCardPlanets?: PlanetsI,
+  computerCardPlanets?: PlanetsI,
   isFlipped: boolean,
   playGame: boolean,
   playerScore: number,
-  computerScore: number
+  computerScore: number,
+  playOption: string
 }
 
 const defaultState: DefaultStateI = {
@@ -16,7 +21,8 @@ const defaultState: DefaultStateI = {
   isFlipped: false,
   playGame: true,
   playerScore: 0,
-  computerScore: 0
+  computerScore: 0,
+  playOption: 'people'
 };
 
 const Reducer = (state: DefaultStateI = defaultState, action: StarWarsDispatchTypes): DefaultStateI => {
@@ -26,16 +32,40 @@ const Reducer = (state: DefaultStateI = defaultState, action: StarWarsDispatchTy
         ...state,
         loading: action.loading
       }
-    case SET_PLAYER_CARD: {
+    case SET_PLAYER_CARD_PEOPLE: {
       return {
         ...state,
-        playerCard: action.playerCard
+        playerCardPeople: action.playerCardPeople
       }
     }
-    case SET_COMPUTER_CARD: {
+    case SET_COMPUTER_CARD_PEOPLE: {
       return {
         ...state,
-        computerCard: action.computerCard
+        computerCardPeople: action.computerCardPeople
+      }
+    }
+    case SET_PLAYER_CARD_STARSHIPS: {
+      return {
+        ...state,
+        playerCardStarShip: action.playerCardStarShip
+      }
+    }
+    case SET_COMPUTER_CARD_STARSHIPS: {
+      return {
+        ...state,
+        computerCardStarShip: action.computerCardStarShip
+      }
+    }
+    case SET_PLAYER_CARD_PLANETS: {
+      return {
+        ...state,
+        playerCardPlanets: action.playerCardPlanets
+      }
+    }
+    case SET_COMPUTER_CARD_PLANETS: {
+      return {
+        ...state,
+        computerCardPlanets: action.computerCardPlanets
       }
     }
     case SET_FLIPPED: {
@@ -72,6 +102,12 @@ const Reducer = (state: DefaultStateI = defaultState, action: StarWarsDispatchTy
       return {
         ...state,
         username: ''
+      }
+    }
+    case SET_PLAY_OPTION: {
+      return {
+        ...state,
+        playOption: action.playOption
       }
     }
     default: {

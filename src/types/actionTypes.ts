@@ -1,20 +1,37 @@
 export const SET_LOADING = 'SET_LOADING';
-export const SET_PLAYER_CARD = 'SET_PLAYER_CARD';
-export const SET_COMPUTER_CARD = 'SET_COMPUTER_CARD';
+export const SET_PLAYER_CARD_PEOPLE = 'SET_PLAYER_CARD_PEOPLE';
+export const SET_PLAYER_CARD_STARSHIPS = 'SET_PLAYER_CARD_STARSHIPS';
+export const SET_PLAYER_CARD_PLANETS = 'SET_PLAYER_CARD_PLANETS';
+export const SET_COMPUTER_CARD_PEOPLE = 'SET_COMPUTER_CARD_PEOPLE';
+export const SET_COMPUTER_CARD_STARSHIPS = 'SET_COMPUTER_CARD_STARSHIPS';
+export const SET_COMPUTER_CARD_PLANETS = 'SET_COMPUTER_CARD_PLANETS';
 export const SET_FLIPPED = 'SET_FLIPPED';
 export const SET_GAME_STATE = 'SET_GAME_STATE';
 export const SET_PLAYER_SCORE = 'SET_PLAYER_SCORE';
 export const SET_COMPUTER_SCORE = 'SET_COMPUTER_SCORE';
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const SET_PLAY_OPTION = 'SET_PLAY_OPTION';
 
-
-
-export type StarShipI = {
+export type PeopleI = {
   name: string,
   height: number,
   mass: number,
   gender: string
+}
+
+export type StarShipI = {
+  name: string,
+  model: number,
+  cost_in_credits: number,
+  crew: string
+}
+
+export type PlanetsI = {
+  name: string,
+  rotation_period: number,
+  orbital_period: number,
+  diameter: string
 }
 
 export interface SetLoading {
@@ -22,14 +39,34 @@ export interface SetLoading {
   loading: boolean
 }
 
-export interface SetPlayerCard {
-  type: typeof SET_PLAYER_CARD,
-  playerCard: StarShipI
+export interface SetPlayerCardPeople {
+  type: typeof SET_PLAYER_CARD_PEOPLE,
+  playerCardPeople: PeopleI
 }
 
-export interface SetComputerCard {
-  type: typeof SET_COMPUTER_CARD,
-  computerCard: StarShipI
+export interface SetComputerCardPeople {
+  type: typeof SET_COMPUTER_CARD_PEOPLE,
+  computerCardPeople: PeopleI
+}
+
+export interface SetPlayerCardStarShip {
+  type: typeof SET_PLAYER_CARD_STARSHIPS,
+  playerCardStarShip?: StarShipI
+}
+
+export interface SetComputerCardStarShip {
+  type: typeof SET_COMPUTER_CARD_STARSHIPS,
+  computerCardStarShip: StarShipI
+}
+
+export interface SetPlayerCardPlanets {
+  type: typeof SET_PLAYER_CARD_PLANETS,
+  playerCardPlanets?: PlanetsI
+}
+
+export interface SetComputerCardPlanets {
+  type: typeof SET_COMPUTER_CARD_PLANETS,
+  computerCardPlanets: PlanetsI
 }
 
 export interface SetCardFlipped {
@@ -59,4 +96,9 @@ export interface UserLogout {
   type: typeof USER_LOGOUT
 }
 
-export type StarWarsDispatchTypes = SetLoading | SetPlayerCard | SetComputerCard | SetCardFlipped | SetGameState | SetPlayerScore | SetComputerScore | UserLogin | UserLogout
+export interface SetPlayOption {
+  type: typeof SET_PLAY_OPTION
+  playOption: string
+}
+
+export type StarWarsDispatchTypes = SetLoading | SetPlayerCardPeople | SetComputerCardPeople | SetPlayerCardStarShip | SetComputerCardStarShip | SetPlayerCardPlanets | SetComputerCardPlanets | SetCardFlipped | SetGameState | SetPlayerScore | SetComputerScore | UserLogin | UserLogout | SetPlayOption

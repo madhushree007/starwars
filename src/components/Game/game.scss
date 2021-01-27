@@ -9,3 +9,16 @@
   height: 4rem;
   margin-left: -5rem;
 }
+.welcome {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  h6 {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.gameRules {
+  padding-top: 10px;
+}

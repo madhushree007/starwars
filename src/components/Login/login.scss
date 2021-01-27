@@ -7,7 +7,6 @@
   .inner {
     min-width: 420px;
     height: 654px;
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -26,9 +25,6 @@
 
     input {
       height: 36px;
-      background: black;
-      color: #FFF;
-      border: 1px solid #b38004;
       padding: 4px;
       text-indent: 10px;
     }
@@ -38,8 +34,6 @@
     
     button{
       margin-top: 10px;
-      background-color: #b38004;
-      color: black;
       font-size: 20px;
       padding: 4px 0;
     }

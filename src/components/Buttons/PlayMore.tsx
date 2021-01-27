@@ -11,7 +11,7 @@ const PlayMore: React.FC = () => {
   }
 
   return (
-    <div>
+    <div style={{paddingTop: '20px'}}>
       <Card bg='info' text='white' className="text-center">
         <Card.Body>
           <h4>Isn't it interesting? Let's play again!</h4>

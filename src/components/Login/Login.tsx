@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { user_login } from '../../action';
 import './login.scss';
@@ -13,7 +13,9 @@ export default function Login () {
     dispatch(user_login(user));
   }
   return (
-    <Card className="text-center">
+    <div className='login'>
+      <div className='inner'>
+        <Card className="text-center" border="info" bg='info' text='white'>
       <Card.Body>
         <div>
             <h1>
@@ -24,9 +26,12 @@ export default function Login () {
         <form className='formDiv' onSubmit={onSubmit}>
           <label htmlFor='firstName'>Please Enter Your Name</label>
           <input name="firstName" value={user} onChange={e => setUser(e.target.value)}  />
-          <button type="submit">ENTER</button>
+          <Button type="submit" variant="warning" style={{width: '14rem'}}>ENTER</Button>
         </form>
         </Card.Body>
     </Card>
+      </div>
+    </div>
+    
   )
 }

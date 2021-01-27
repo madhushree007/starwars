@@ -9,7 +9,7 @@ interface PropsI {
 
 }
 
-export default function InfoCard ({ info, isCardFlipped }: PropsI) {
+export default function InfoCardStarships ({ info, isCardFlipped }: PropsI) {
   return (
     <ReactCardFlip isFlipped={isCardFlipped} flipDirection="horizontal">
         <div>
@@ -23,10 +23,9 @@ export default function InfoCard ({ info, isCardFlipped }: PropsI) {
             <Card.Body>
               <ListGroup variant="flush">
                   <ListGroup.Item>Name: {info && info.name}</ListGroup.Item>
-                  <ListGroup.Item>Height: {info && info.height}</ListGroup.Item>
-                  <ListGroup.Item>Gender: {info && info.gender}</ListGroup.Item>
-                  <ListGroup.Item variant="info">Mass: {info && info.mass}</ListGroup.Item>
-                  
+                  <ListGroup.Item>Model: {info && info.model}</ListGroup.Item>
+                  <ListGroup.Item>Cost in credits: {info && info.cost_in_credits}</ListGroup.Item>
+                  <ListGroup.Item variant="info">Crew: {info && info.crew}</ListGroup.Item>
               </ListGroup>
             </Card.Body>
           </Card>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { SET_COMPUTER_CARD, SET_COMPUTER_SCORE, SET_FLIPPED, SET_GAME_STATE, SET_LOADING, SET_PLAYER_CARD, SET_PLAYER_SCORE, StarShipI, StarWarsDispatchTypes, USER_LOGIN, USER_LOGOUT } from './types/actionTypes';
+import { PeopleI, PlanetsI, SET_COMPUTER_CARD_PEOPLE, SET_COMPUTER_CARD_PLANETS, SET_COMPUTER_CARD_STARSHIPS, SET_COMPUTER_SCORE, SET_FLIPPED, SET_GAME_STATE, SET_LOADING, SET_PLAYER_CARD_PEOPLE, SET_PLAYER_CARD_PLANETS, SET_PLAYER_CARD_STARSHIPS, SET_PLAYER_SCORE, SET_PLAY_OPTION, StarShipI, StarWarsDispatchTypes, USER_LOGIN, USER_LOGOUT } from './types/actionTypes';
+const BASE_URL = 'https://swapi.dev/api/';
 
 export function set_loading(loading: boolean): StarWarsDispatchTypes {
   return {
@@ -9,17 +10,45 @@ export function set_loading(loading: boolean): StarWarsDispatchTypes {
   }
 }
 
-export function set_player_card(playerCard: StarShipI): StarWarsDispatchTypes {
+export function set_player_card_people(playerCardPeople: PeopleI): StarWarsDispatchTypes {
   return {
-    type: SET_PLAYER_CARD,
-    playerCard
+    type: SET_PLAYER_CARD_PEOPLE,
+    playerCardPeople
   }
 }
 
-export function set_computer_card(computerCard: StarShipI): StarWarsDispatchTypes {
+export function set_player_card_starships(playerCardStarShip: StarShipI): StarWarsDispatchTypes {
   return {
-    type: SET_COMPUTER_CARD,
-    computerCard
+    type: SET_PLAYER_CARD_STARSHIPS,
+    playerCardStarShip
+  }
+}
+
+export function set_player_card_planets(playerCardPlanets: PlanetsI): StarWarsDispatchTypes {
+  return {
+    type: SET_PLAYER_CARD_PLANETS,
+    playerCardPlanets
+  }
+}
+
+export function set_computer_card_people(computerCardPeople: PeopleI): StarWarsDispatchTypes {
+  return {
+    type: SET_COMPUTER_CARD_PEOPLE,
+    computerCardPeople
+  }
+}
+
+export function set_computer_card_starships(computerCardStarShip: StarShipI): StarWarsDispatchTypes {
+  return {
+    type: SET_COMPUTER_CARD_STARSHIPS,
+    computerCardStarShip
+  }
+}
+
+export function set_computer_card_planets(computerCardPlanets: PlanetsI): StarWarsDispatchTypes {
+  return {
+    type: SET_COMPUTER_CARD_PLANETS,
+    computerCardPlanets
   }
 }
 
@@ -62,22 +91,65 @@ export function user_logout(): StarWarsDispatchTypes {
   }
 }
 
-export function fetchSWInfo() {
+export function play_option(playOption: string): StarWarsDispatchTypes {
+  return {
+    type: SET_PLAY_OPTION,
+    playOption
+  }
+}
+
+
+
+export function fetchSWInfo(playWith: string) {
   return async (dispatch: Dispatch<StarWarsDispatchTypes>) => {
     dispatch(set_loading(true));
+    try {
+      let randNum1 = Math.floor(Math.random() * 15) + 1;
+      const res1 = await axios.get(`${BASE_URL}${playWith}/${randNum1}/`);
+      if (playWith === 'people') dispatch(set_player_card_people(res1.data));
+      else if (playWith === 'planets') dispatch(set_player_card_planets(res1.data));
+      else if (playWith === 'starships') dispatch(set_player_card_starships(res1.data));
 
-    let randNum1 = Math.floor(Math.random() * 15) + 1;
-    const res1 = await axios.get(`https://swapi.dev/api/people/${randNum1}/`);
-    dispatch(set_player_card(res1.data));
+      let randNum2 = Math.floor(Math.random() * 15) + 1;
+      const res2 = await axios.get(`${BASE_URL}${playWith}/${randNum2}/`);
+      if (playWith === 'people') dispatch(set_computer_card_people(res2.data));
+      else if (playWith === 'planets') dispatch(set_computer_card_planets(res2.data));
+      else if (playWith === 'starships') dispatch(set_computer_card_starships(res2.data));
 
-    let randNum2 = Math.floor(Math.random() * 15) + 1;
-    const res2 = await axios.get(`https://swapi.dev/api/people/${randNum2}/`);
-    dispatch(set_computer_card(res2.data));
+      // compares the MASS and set the points 
+      if (playWith === 'people') {
+        if (res1 && res2) {
+          if (res1.data.mass > res2.data.mass) {
+            dispatch(set_player_score());
+          } else if (res2.data.mass > res1.data.mass) {
+            dispatch(set_computer_score());
+          }
+        }
+      }
 
-    if (res1 && res2 && res1.data.mass > res2.data.mass) {
-      dispatch(set_player_score());
-    } else if (res1 && res2 && res2.data.mass > res1.data.mass) {
-      dispatch(set_computer_score());
+      // compares the CREW and set the points 
+      if (playWith === 'starships') {
+        if (res1 && res2) {
+          if (res1.data.crew > res2.data.crew) {
+            dispatch(set_player_score());
+          } else if (res2.data.crew > res1.data.crew) {
+            dispatch(set_computer_score());
+          }
+        }
+      }
+
+      // compares the DIAMETER and set the points 
+      if (playWith === 'planets') {
+        if (res1 && res2) {
+          if (res1.data.diameter > res2.data.diameter) {
+            dispatch(set_player_score());
+          } else if (res2.data.diameter > res1.data.diameter) {
+            dispatch(set_computer_score());
+          }
+        }
+      }
+    } catch (e) {
+      console.log('Error', e);
     }
 
     dispatch(set_loading(false));
