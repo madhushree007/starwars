@@ -14,15 +14,16 @@ describe('reducer', () => {
         isFlipped: false,
         playGame: true,
         computerScore: 0,
-        playerScore: 0
+        playerScore: 0,
+        playOption: 'people'
       }
     )
   })
-  it('should handle SET_PLAYER_CARD', () => {
+  it('should handle SET_PLAYER_CARD_PEOPLE', () => {
     expect(
       reducer(undefined, {
-        type: types.SET_PLAYER_CARD,
-        playerCard: {
+        type: types.SET_PLAYER_CARD_PEOPLE,
+        playerCardPeople: {
           name: 'Madhu',
           height: 174,
           mass: 333,
@@ -35,7 +36,7 @@ describe('reducer', () => {
         loading: false,
         isFlipped: false,
         playGame: true,
-        playerCard: {
+        playerCardPeople: {
           name: 'Madhu',
           height: 174,
           mass: 333,
@@ -43,7 +44,8 @@ describe('reducer', () => {
 
         },
         computerScore: 0,
-        playerScore: 0
+        playerScore: 0,
+        playOption: 'people'
       }
     )
   })

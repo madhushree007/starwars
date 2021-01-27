@@ -5,42 +5,57 @@ exports[`My Connected React-Redux Component should render with given state from 
   className="container"
 >
   <div
-    className="text-center card"
+    className="login"
   >
     <div
-      className="card-body"
+      className="inner"
     >
-      <div>
-        <h1>
-          Welcome 
-          <br />
-          <span>
-            to
-          </span>
-          <br />
-          Card Game
-        </h1>
-      </div>
-      <form
-        className="formDiv"
-        onSubmit={[Function]}
+      <div
+        className="text-center card bg-info text-white border-info"
       >
-        <label
-          htmlFor="firstName"
+        <div
+          className="card-body"
         >
-          Please Enter Your Name
-        </label>
-        <input
-          name="firstName"
-          onChange={[Function]}
-          value=""
-        />
-        <button
-          type="submit"
-        >
-          ENTER
-        </button>
-      </form>
+          <div>
+            <h1>
+              Welcome 
+              <br />
+              <span>
+                to
+              </span>
+              <br />
+              Card Game
+            </h1>
+          </div>
+          <form
+            className="formDiv"
+            onSubmit={[Function]}
+          >
+            <label
+              htmlFor="firstName"
+            >
+              Please Enter Your Name
+            </label>
+            <input
+              name="firstName"
+              onChange={[Function]}
+              value=""
+            />
+            <button
+              className="btn btn-warning"
+              disabled={false}
+              style={
+                Object {
+                  "width": "14rem",
+                }
+              }
+              type="submit"
+            >
+              ENTER
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
