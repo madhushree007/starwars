@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
+import { AnyAction, Store } from 'redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as actions from '../action';
@@ -10,7 +11,7 @@ import * as types from '../types/actionTypes';
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares);
 describe('My Connected React-Redux Component', () => {
-  let store;
+  let store: Store<any, AnyAction>;
   let component: any;
  
   beforeEach(() => {
@@ -29,10 +30,6 @@ describe('My Connected React-Redux Component', () => {
  
   it('should render with given state from Redux store', () => {
     expect(component.toJSON()).toMatchSnapshot();
-  });
- 
-  it('should dispatch an action on button click', () => {
- 
   });
 });
 

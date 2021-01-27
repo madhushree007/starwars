@@ -15,7 +15,7 @@ const PlayMore: React.FC = () => {
       <Card bg='info' text='white' className="text-center">
         <Card.Body>
           <h4>Isn't it interesting? Let's play again!</h4>
-          <Button variant="warning" style={{width: '10rem'}} onClick={setGame}>Play Again</Button>
+          <Button aria-label="play-more" variant="warning" style={{width: '10rem'}} onClick={setGame} >Play Again</Button>
         </Card.Body>
       </Card>
     </div>
