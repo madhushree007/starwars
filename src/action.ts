@@ -117,53 +117,50 @@ export function play_option(playOption: string): StarWarsDispatchTypes {
 export function fetchSWInfo(playWith: string) {
   return async (dispatch: Dispatch<StarWarsDispatchTypes>) => {
     dispatch(set_loading(true));
-    try {
-      let randNum1 = Math.floor(Math.random() * 15) + 1;
-      const res1 = await axios.get(`${BASE_URL}${playWith}/${randNum1}/`);
-      if (playWith === 'people') dispatch(set_player_card_people(res1.data));
-      else if (playWith === 'planets') dispatch(set_player_card_planets(res1.data));
-      else if (playWith === 'starships') dispatch(set_player_card_starships(res1.data));
 
-      let randNum2 = Math.floor(Math.random() * 15) + 1;
-      const res2 = await axios.get(`${BASE_URL}${playWith}/${randNum2}/`);
-      if (playWith === 'people') dispatch(set_computer_card_people(res2.data));
-      else if (playWith === 'planets') dispatch(set_computer_card_planets(res2.data));
-      else if (playWith === 'starships') dispatch(set_computer_card_starships(res2.data));
+    let randNum1 = Math.floor(Math.random() * 15) + 1;
+    const res1 = await axios.get(`${BASE_URL}${playWith}/${randNum1}/`);
+    if (playWith === 'people') dispatch(set_player_card_people(res1.data));
+    else if (playWith === 'planets') dispatch(set_player_card_planets(res1.data));
+    else if (playWith === 'starships') dispatch(set_player_card_starships(res1.data));
 
-      // compares the MASS and set the points 
-      if (playWith === 'people') {
-        if (res1 && res2) {
-          if (res1.data.mass > res2.data.mass) {
-            dispatch(set_player_score());
-          } else if (res2.data.mass > res1.data.mass) {
-            dispatch(set_computer_score());
-          }
+    let randNum2 = Math.floor(Math.random() * 15) + 1;
+    const res2 = await axios.get(`${BASE_URL}${playWith}/${randNum2}/`);
+    if (playWith === 'people') dispatch(set_computer_card_people(res2.data));
+    else if (playWith === 'planets') dispatch(set_computer_card_planets(res2.data));
+    else if (playWith === 'starships') dispatch(set_computer_card_starships(res2.data));
+
+    // compares the MASS and set the points 
+    if (playWith === 'people') {
+      if (res1 && res2) {
+        if (res1.data.mass > res2.data.mass) {
+          dispatch(set_player_score());
+        } else if (res2.data.mass > res1.data.mass) {
+          dispatch(set_computer_score());
         }
       }
+    }
 
-      // compares the CREW and set the points 
-      if (playWith === 'starships') {
-        if (res1 && res2) {
-          if (res1.data.crew > res2.data.crew) {
-            dispatch(set_player_score());
-          } else if (res2.data.crew > res1.data.crew) {
-            dispatch(set_computer_score());
-          }
+    // compares the CREW and set the points 
+    if (playWith === 'starships') {
+      if (res1 && res2) {
+        if (res1.data.crew > res2.data.crew) {
+          dispatch(set_player_score());
+        } else if (res2.data.crew > res1.data.crew) {
+          dispatch(set_computer_score());
         }
       }
+    }
 
-      // compares the DIAMETER and set the points 
-      if (playWith === 'planets') {
-        if (res1 && res2) {
-          if (res1.data.diameter > res2.data.diameter) {
-            dispatch(set_player_score());
-          } else if (res2.data.diameter > res1.data.diameter) {
-            dispatch(set_computer_score());
-          }
+    // compares the DIAMETER and set the points 
+    if (playWith === 'planets') {
+      if (res1 && res2) {
+        if (res1.data.diameter > res2.data.diameter) {
+          dispatch(set_player_score());
+        } else if (res2.data.diameter > res1.data.diameter) {
+          dispatch(set_computer_score());
         }
       }
-    } catch (e) {
-      console.log('Error', e);
     }
 
     dispatch(set_loading(false));
